@@ -1,0 +1,65 @@
+# =========================
+# Python & Environment
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+venv/
+env/
+
+# =========================
+# Streamlit
+# =========================
+.streamlit/
+*.log
+
+# =========================
+# Large Datasets (NCERT)
+# =========================
+NcertData/
+
+# =========================
+# Vector Databases & Indexes
+# =========================
+chroma_ncert_db/
+chroma_ncert_db/**
+*.sqlite3
+
+# =========================
+# Generated Artifacts
+# =========================
+*.pkl
+doc_embeddings.pkl
+sparse_index.pkl
+
+# =========================
+# Audio / Voice Files
+# =========================
+*.wav
+*.mp3
+*.ogg
+voice_query.wav
+query.wav
+
+# =========================
+# Evaluation Outputs
+# =========================
+*.csv
+*.json
+evaluation_results/
+
+# =========================
+# Jupyter Notebooks (outputs & cache)
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# OS / Editor Files
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
