@@ -5,6 +5,11 @@ A curriculum‑aligned, multimodal NCERT question‑answering system built using
 
 
 
+
+
+
+
+
 📋TL;DR (Short Overview)
 
 
@@ -19,6 +24,9 @@ A curriculum‑aligned, multimodal NCERT question‑answering system built using
 | Vector Store     | ChromaDB                                                         |
 | Lines of Code    | ~3,000+ (Python)                                                 |
 | License          | Academic / Educational                                           |
+
+
+
 
 
 
@@ -49,6 +57,9 @@ A curriculum‑aligned, multimodal NCERT question‑answering system built using
 
 
 
+
+
+
 🏗️ System Architecture
 
 <img width="2179" height="991" alt="image" src="https://github.com/user-attachments/assets/4b3627f3-6aae-4770-91d5-fda7ca4a988a" />
@@ -57,25 +68,25 @@ A curriculum‑aligned, multimodal NCERT question‑answering system built using
 
 🚀 Key Features
 
-📚 NCERT‑only, curriculum‑grounded answers
+1.📚 NCERT‑only, curriculum‑grounded answers
 
-🎯 Grade‑specific filtering (Class 5–10)
+2.🎯 Grade‑specific filtering (Class 5–10)
 
-🔎 Hybrid Retrieval (Dense + Sparse)
+3.🔎 Hybrid Retrieval (Dense + Sparse)
 
-🧠 MMR‑based re‑ranking
+4.🧠 MMR‑based re‑ranking
 
-🖼️ OCR support for textbook images
+5.🖼️ OCR support for textbook images
 
-🎤 Voice input using Whisper
+6.🎤 Voice input using Whisper
 
-🌍 Multilingual question support
+7.🌍 Multilingual question support
 
-📝 Answer summarization
+8.📝 Answer summarization
 
-📂 Source citation
+9.📂 Source citation
 
-📊 Automated + LLM‑based evaluation
+10.📊 Automated + LLM‑based evaluation
 
 
 
@@ -170,24 +181,197 @@ Intel-AI-Unnati-NCERT-RAG/
 
 
 
+🚀 Quick Start (< 2 minutes)
+
+Follow the steps below to set up and run the NCERT Hybrid RAG system locally.
+
+1️⃣ Clone the Repository
+
+
+                    git clone https://github.com/<your-username>/<your-repo-name>.git
+                    cd <your-repo-name>
+
+2️⃣ Initialize Python Environment (Python 3.13.5)
+This project uses Python 3.13.5.
+
+Initialize the project using uv:
+
+                        uv init --python 3.13.5
+
+Create a virtual environment:
+
+                         uv venv
+
+Activate the virtual environment:
+
+Linux / macOS
+
+             source .venv/bin/activate
+
+Windows (PowerShell)
+
+             .venv\Scripts\Activate.ps1
+Windows (CMD)
+
+              .venv\Scripts\activate
+
+
+
+3️⃣ Install Dependencies
+
+            pip install -r requirements.txt
+
+4️⃣ Prepare NCERT Dataset (Required)
+
+The NCERT dataset (~7–8 GB) is not included in the repository due to size limits.
+Download the dataset from the provided Google Drive link
+Extract it into the project root in the following structure:
+
+             NcertData/
+             ├── Class5/
+             ├── Class6/
+             ├── Class7/
+             ├── Class8/
+             ├── Class9/
+             └── Class10/
+
+
+5️⃣ Download Prebuilt ChromaDB (Recommended)
+
+To save time, a prebuilt Chroma vector database is provided separately.
+Download chroma_ncert_db/ from the Google Drive link
+Place it directly in the project root:
+
+               chroma_ncert_db/
+
+⚠️ This folder is not tracked in Git due to size constraints.
+
+
+
+6️⃣ (Optional) Build Indexes Manually
+
+If you do NOT use the prebuilt ChromaDB, generate indexes locally:
+
+            python build_doc_embeddings.py
+            python build_sparse_index.py
+
+This step:
+Creates dense embeddings
+Builds sparse TF‑IDF index
+Stores reusable artifacts locally
+
+
+7️⃣ Install & Configure Ollama (LLM Backend)
+This project uses Mistral via Ollama for answer generation.
+
+Install Ollama
+Download and install Ollama from:
+👉 https://ollama.com
+
+Verify installation:
+
+           ollama --version
+
+Pull the Mistral Model:
+
+           ollama pull mistral
+
+Run Mistral Locally:
+
+            ollama run mistral
+            
+⚠️ Keep Ollama running in the background while using the app.
+
+
+8️⃣ Run the Streamlit Application
+
+              streamlit run app.py
+ 
+ The application will open automatically in your browser.
+
+
+ 
+ 🎯 Supported Input Modes
+Once the app is running, you can ask questions using:
+
+1.✍️ Text Input
+
+2.📷 OCR Input (Upload textbook images)
+
+3.🎤 Voice Input (Microphone-based queries)
+
+
+
+📄 Output Provided
+For each query, the system generates:
+
+1.✅ NCERT‑grounded answer
+
+2.📝 Short summary
+
+3.📂 Source citations
+
+4.🎓 Grade‑specific response (Class 5–10)
+
+
+🧪 Evaluation (Optional)
+
+Run automated evaluation:
+
+            python evaluate_answers.py
+
+Run LLM-based qualitative evaluation:
+
+            python llm_evaluate.py
+
+
+
+♻️ Notes
+1.Large datasets and vector databases are excluded from Git
+
+2.All results are reproducible using provided scripts
+
+3.Answers are generated strictly from NCERT context only
+
+4.Ollama must be running locally for answer generation
 
 
 
 
 
+## 📦 Dataset & Prebuilt Artifacts (Google Drive)
 
+Due to GitHub storage limitations, large files required to run this project are **not included** in the repository.
 
+The following resources are provided via Google Drive:
 
+- 📚 **NCERT Dataset (Class 5–10)** (~7–8 GB)
+- 🧠 **Prebuilt Chroma Vector Database (`chroma_ncert_db`)**
+- 📊 **Sparse Index (`sparse_index.pkl`)**
+- 🧬 **Dense Embeddings (`doc_embeddings.pkl`)**
+- 🎤 Sample voice input files (for testing)
 
+👉 **Download from Google Drive:**  
+🔗 https://drive.google.com/drive/folders/1LsEtZPXwRtxqNKCctFVpgmYm7N-Uk1Y
 
+---
 
+### 📂 After Download
 
+Extract the contents into the **project root directory** so that the structure looks like this:
 
+```text
+NcertData/
+├── Class5/
+├── Class6/
+├── Class7/
+├── Class8/
+├── Class9/
+└── Class10/
 
-
-
-
-
+chroma_ncert_db/
+doc_embeddings.pkl
+sparse_index.pkl
 
 
 
